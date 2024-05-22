@@ -1,2 +1,9 @@
 # LookWithJuputer
-A convenient way to view data in a polaris or pandas table with the ability to go to any part of the table with a certain step
+
+Данный модуль используется для просмотра таблиц `polars` или `pandas` с помощью виджетов Jupyter.  
+Например:  
+![Exemple](./Images/Exemple.png)
+
+## Структура
+
+Есть два класса: `DataOut` и `DataShow`. Класс `DataOut` отвечает за управление выводом таблицы. Класс `DataShow` используется для создания верхней надписи и управления событиями.
