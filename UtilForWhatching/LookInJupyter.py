@@ -165,7 +165,6 @@ class DataShow:
         data_set: pd.DataFrame | pol.DataFrame,
         id_start: int = 0,
         line_range: tuple[int, int] = (0, 10),
-        lib_work: str = "pandas",
     ) -> None:
         """Отобразить интерактивный виджет для просмотра DataFrame.
 
@@ -175,8 +174,9 @@ class DataShow:
             line_range: Диапазон строк. По умолчанию (0, 10).
             lib_work: Используемая библиотека. По умолчанию 'pandas'.
         """
+        lib = "pandas" if isinstance(data_set, pd.DataFrame) else "polars"
         # Проверка наличия требуемых библиотек
-        if not _check_required_libs(["ipywidgets", "IPython", "pandas", "polars"]):
+        if not _check_required_libs(["ipywidgets", "IPython", lib]):
             print("Ошибка: не удалось запустить show_tablet - не установлены требуемые библиотеки")
             return
 
