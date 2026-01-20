@@ -8,6 +8,10 @@ _available_libs = {
     "IPython": False,
 }
 
+# Инициализация переменных
+pol = None
+pd = None
+
 try:
     import ipywidgets as widgets
 
@@ -21,7 +25,6 @@ try:
     _available_libs["pandas"] = True
 except ImportError:
     print("Внимание: pandas не установлен. Install: pip install pandas")
-    pd = None
 
 try:
     import polars as pol
@@ -29,7 +32,6 @@ try:
     _available_libs["polars"] = True
 except ImportError:
     print("Внимание: polars не установлен. Install: pip install polars")
-    pol = None
 
 try:
     from IPython.display import DisplayHandle, clear_output, display
