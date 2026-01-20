@@ -8,10 +8,6 @@ _available_libs = {
     "IPython": False,
 }
 
-# Инициализация переменных
-pol = None
-pd = None
-
 try:
     import ipywidgets as widgets
 
