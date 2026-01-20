@@ -61,7 +61,7 @@ class TestDataShowTablet:
         mock_display.return_value = mock_display_obj
 
         data_show = DataShow()
-        data_show.show_tablet(sample_pandas_df, id_start=5, line_range=(2, 8), lib_work="pandas")
+        data_show.show_tablet(sample_pandas_df, id_start=5, line_range=(2, 8))
 
         assert data_show.slider_database.value == 5
         assert data_show.slider_range_index.value == (2, 8)
