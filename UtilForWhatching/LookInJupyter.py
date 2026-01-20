@@ -70,16 +70,6 @@ class DataOut:
             line_range: Диапазон строк для просмотра. По умолчанию (0, 10).
             lib_work: Используемая библиотека ('pandas' или 'polars'). По умолчанию 'pandas'.
         """
-
-        # Более явная проверка типа
-        is_pandas = isinstance(data_set, pd.DataFrame)
-        is_polars = pol is not None and isinstance(data_set, pol.DataFrame)
-        # Проверка наличия требуемых библиотек
-        if not (is_pandas or is_polars):
-            raise TypeError(
-                "Unsupported data type. Only pandas and polars DataFrames are supported."
-            )
-
         self.data_set = data_set
         self.id_start = id_start
         self.line_range = line_range
