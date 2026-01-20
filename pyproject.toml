@@ -42,6 +42,15 @@ test = [
     "pytest-cov>=4.0.0",
 ]
 
+[dependency-groups]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+
 [project.urls]
 Homepage = "https://github.com/yourusername/look-with-jupyter"
 Documentation = "https://github.com/yourusername/look-with-jupyter"
@@ -80,15 +89,13 @@ extend-exclude = '''
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+
+[tool.ruff.lint]
 select = ["E", "F", "W", "I"]
 ignore = ["E501"]
-exclude = [
-    ".git",
-    ".venv",
-    "build",
-    "dist",
-    "__pycache__",
-]
+
+[tool.ruff.lint.isort]
+# Конфиг для автоматической сортировки импортов
 
 [tool.mypy]
 python_version = "3.11"

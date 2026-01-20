@@ -17,12 +17,14 @@ def example_pandas():
     print("=" * 50)
 
     # Создаем DataFrame
-    df = pd.DataFrame({
-        'name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank'],
-        'age': [25, 30, 35, 28, 32, 27],
-        'salary': [50000, 60000, 75000, 55000, 70000, 52000],
-        'city': ['New York', 'London', 'Paris', 'Berlin', 'Tokyo', 'Sydney']
-    })
+    df = pd.DataFrame(
+        {
+            "name": ["Alice", "Bob", "Charlie", "David", "Eve", "Frank"],
+            "age": [25, 30, 35, 28, 32, 27],
+            "salary": [50000, 60000, 75000, 55000, 70000, 52000],
+            "city": ["New York", "London", "Paris", "Berlin", "Tokyo", "Sydney"],
+        }
+    )
 
     print(f"\nDataFrame shape: {df.shape}")
     print(f"Columns: {list(df.columns)}")
@@ -41,12 +43,14 @@ def example_polars():
     print("=" * 50)
 
     # Создаем DataFrame с polars
-    df = pl.DataFrame({
-        'name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank'],
-        'age': [25, 30, 35, 28, 32, 27],
-        'salary': [50000, 60000, 75000, 55000, 70000, 52000],
-        'city': ['New York', 'London', 'Paris', 'Berlin', 'Tokyo', 'Sydney']
-    })
+    df = pl.DataFrame(
+        {
+            "name": ["Alice", "Bob", "Charlie", "David", "Eve", "Frank"],
+            "age": [25, 30, 35, 28, 32, 27],
+            "salary": [50000, 60000, 75000, 55000, 70000, 52000],
+            "city": ["New York", "London", "Paris", "Berlin", "Tokyo", "Sydney"],
+        }
+    )
 
     print(f"\nDataFrame shape: {df.shape}")
     print(f"Columns: {list(df.columns)}")
@@ -64,11 +68,13 @@ def example_datashow():
     print("Пример с DataShow (только в Jupyter)")
     print("=" * 50)
 
-    df = pd.DataFrame({
-        'A': list(range(20)),
-        'B': list(range(20, 40)),
-        'C': list(range(40, 60)),
-    })
+    df = pd.DataFrame(
+        {
+            "A": list(range(20)),
+            "B": list(range(20, 40)),
+            "C": list(range(40, 60)),
+        }
+    )
 
     print(f"DataFrame created with shape: {df.shape}")
     print("В Jupyter окружении используйте:")
