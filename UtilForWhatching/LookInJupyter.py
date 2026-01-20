@@ -135,7 +135,11 @@ class DataShow:
         # Создание виджетов
         self.tab = widgets.Tab()
         self.slider_database = widgets.IntSlider(
-            value=id_start, min=0, max=len(data_set) - 1, step=line_range[1] - line_range[0], description="Индекс: "
+            value=id_start,
+            min=0,
+            max=len(data_set) - 1,
+            step=line_range[1] - line_range[0],
+            description="Индекс: ",
         )
         self.slider_range_index = widgets.IntRangeSlider(
             value=line_range, min=line_range[0], max=line_range[1], step=1, description="С .. по .."
