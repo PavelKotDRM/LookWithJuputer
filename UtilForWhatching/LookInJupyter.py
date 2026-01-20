@@ -1,24 +1,58 @@
 from typing import Any
 
+# Проверка доступности библиотек
+_available_libs = {
+    "ipywidgets": False,
+    "pandas": False,
+    "polars": False,
+    "IPython": False,
+}
+
 try:
     import ipywidgets as widgets
-except ImportError as e:
-    raise ImportError("ipywidgets is required. Install it with: pip install ipywidgets") from e
+
+    _available_libs["ipywidgets"] = True
+except ImportError:
+    print("Внимание: ipywidgets не установлен. Install: pip install ipywidgets")
 
 try:
     import pandas as pd
-except ImportError as e:
-    raise ImportError("pandas is required. Install it with: pip install pandas") from e
+
+    _available_libs["pandas"] = True
+except ImportError:
+    print("Внимание: pandas не установлен. Install: pip install pandas")
+    pd = None
 
 try:
     import polars as pol
-except ImportError as e:
-    raise ImportError("polars is required. Install it with: pip install polars") from e
+
+    _available_libs["polars"] = True
+except ImportError:
+    print("Внимание: polars не установлен. Install: pip install polars")
+    pol = None
 
 try:
     from IPython.display import DisplayHandle, clear_output, display
-except ImportError as e:
-    raise ImportError("IPython is required. Install it with: pip install IPython") from e
+
+    _available_libs["IPython"] = True
+except ImportError:
+    print("Внимание: IPython не установлен. Install: pip install IPython")
+
+
+def _check_required_libs(required_libs: list[str]) -> bool:
+    """Проверить, установлены ли необходимые библиотеки.
+
+    Args:
+        required_libs: Список имён требуемых библиотек
+
+    Returns:
+        True если все библиотеки установлены, False иначе
+    """
+    missing = [lib for lib in required_libs if not _available_libs.get(lib, False)]
+    if missing:
+        print(f"Ошибка: не установлены библиотеки: {', '.join(missing)}")
+        return False
+    return True
 
 
 class DataOut:
@@ -38,6 +72,16 @@ class DataOut:
             line_range: Диапазон строк для просмотра. По умолчанию (0, 10).
             lib_work: Используемая библиотека ('pandas' или 'polars'). По умолчанию 'pandas'.
         """
+
+        # Более явная проверка типа
+        is_pandas = isinstance(data_set, pd.DataFrame)
+        is_polars = pol is not None and isinstance(data_set, pol.DataFrame)
+        # Проверка наличия требуемых библиотек
+        if not (is_pandas or is_polars):
+            raise TypeError(
+                "Unsupported data type. Only pandas and polars DataFrames are supported."
+            )
+
         self.data_set = data_set
         self.id_start = id_start
         self.line_range = line_range
@@ -106,6 +150,12 @@ class DataShow:
     """Класс для отображения DataFrame в Jupyter."""
 
     def __init__(self) -> None:
+        # Проверка наличия требуемых библиотек
+        if not _check_required_libs(["ipywidgets", "IPython"]):
+            print(
+                "Внимание: некоторые библиотеки не установлены. DataShow может работать неправильно."
+            )
+
         self.display: Any = None
         self.tab: widgets.Tab | None = None
         self.slider_database: widgets.IntSlider | None = None
@@ -127,6 +177,11 @@ class DataShow:
             line_range: Диапазон строк. По умолчанию (0, 10).
             lib_work: Используемая библиотека. По умолчанию 'pandas'.
         """
+        # Проверка наличия требуемых библиотек
+        if not _check_required_libs(["ipywidgets", "IPython", "pandas", "polars"]):
+            print("Ошибка: не удалось запустить show_tablet - не установлены требуемые библиотеки")
+            return
+
         # Очистка предыдущего отображения
         if self.display:
             clear_output()
