@@ -1,9 +1,24 @@
 from typing import Any
 
-import ipywidgets as widgets
-import pandas as pd
-import polars as pol
-from IPython.display import DisplayHandle, clear_output, display
+try:
+    import ipywidgets as widgets
+except ImportError as e:
+    raise ImportError("ipywidgets is required. Install it with: pip install ipywidgets") from e
+
+try:
+    import pandas as pd
+except ImportError as e:
+    raise ImportError("pandas is required. Install it with: pip install pandas") from e
+
+try:
+    import polars as pol
+except ImportError as e:
+    raise ImportError("polars is required. Install it with: pip install polars") from e
+
+try:
+    from IPython.display import DisplayHandle, clear_output, display
+except ImportError as e:
+    raise ImportError("IPython is required. Install it with: pip install IPython") from e
 
 
 class DataOut:
@@ -120,10 +135,10 @@ class DataShow:
         # Создание виджетов
         self.tab = widgets.Tab()
         self.slider_database = widgets.IntSlider(
-            value=id_start, min=0, max=len(data_set) - 1, step=10, description="Индекс: "
+            value=id_start, min=0, max=len(data_set) - 1, step=line_range[1] - line_range[0], description="Индекс: "
         )
         self.slider_range_index = widgets.IntRangeSlider(
-            value=line_range, min=0, max=10, step=1, description="С .. по .."
+            value=line_range, min=line_range[0], max=line_range[1], step=1, description="С .. по .."
         )
 
         # Создание виджета для выбора колонок
