@@ -1,5 +1,109 @@
 # LookWithJupyter
 
+## English
+
+Interactive module for viewing `polars` or `pandas` tables using Jupyter widgets.
+
+A convenient solution for working with large DataFrames directly in Jupyter Notebook/Lab with interactive controls for data navigation and filtering.
+
+![Exemple](./Images/Exemple.png)
+
+### Features
+
+- ✨ Support for pandas and polars DataFrames
+- 📊 Interactive Jupyter widgets
+- 🎛️ Display range control for rows
+- 🏷️ Column selection
+- 🧪 Full test coverage
+- 📦 Ready to install as a module
+- 🔧 Simple and intuitive API
+
+### Installation
+
+#### Requirements
+
+- Python >= 3.11
+- Jupyter Notebook or Jupyter Lab
+- pandas and/or polars
+
+#### Via GitHub Releases (recommended)
+
+Download the latest `.whl` file from [Releases](https://github.com/yourusername/look-with-jupyter/releases) and install:
+
+```bash
+pip install look-with-jupyter-0.1.0-py3-none-any.whl
+```
+
+#### From sources (development mode)
+
+```bash
+git clone https://github.com/yourusername/look-with-jupyter.git
+cd look-with-jupyter
+pip install -e ".[dev]"
+```
+
+#### From PyPI (when published)
+
+```bash
+pip install look-with-jupyter
+```
+
+### Quick Start
+
+```python
+from UtilForWhatching import DataShow
+import pandas as pd
+
+# Create a DataFrame
+df = pd.DataFrame({
+    'name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve'],
+    'age': [25, 30, 35, 28, 32],
+    'salary': [50000, 60000, 75000, 55000, 65000]
+})
+
+# Display interactive widget in one line!
+DataShow().show_tablet(df)
+```
+
+After execution you will get an interactive interface with:
+
+- Slider for scrolling data
+- Display range control
+- Column visibility selection
+
+### Usage
+
+#### Example 1: DataShow - High-level API (recommended)
+
+The simplest way to use for quick data viewing:
+
+```python
+from UtilForWhatching import DataShow
+import pandas as pd
+
+# Create a DataFrame
+df = pd.DataFrame({
+    'name': ['Alice', 'Bob', 'Charlie'],
+    'age': [25, 30, 35],
+    'salary': [50000, 60000, 75000]
+})
+
+# Display interactive widget
+show = DataShow()
+show.show_tablet(df)  # Pandas is used by default
+```
+
+**Parameters for `show_tablet()`:**
+
+- `data_set`: DataFrame to display
+- `id_start` (int, default=0): Starting index
+- `line_range` (tuple, default=(0, 10)): Number of rows per page
+- `lib_work` (str, default="pandas"): "pandas" or "polars"
+
+---
+
+## Русский
+
 Интерактивный модуль для просмотра таблиц `polars` или `pandas` с помощью виджетов Jupyter.
 
 Удобное решение для работы с большими DataFrame'ами прямо в Jupyter Notebook/Lab с интерактивными элементами управления для навигации и фильтрации данных.
@@ -23,6 +127,14 @@
 - Python >= 3.11
 - Jupyter Notebook или Jupyter Lab
 - pandas и/или polars
+
+### Через GitHub Releases (рекомендуется)
+
+Скачайте последнюю версию `.whl` файла из [Releases](https://github.com/yourusername/look-with-jupyter/releases) и установите:
+
+```bash
+pip install look-with-jupyter-0.1.0-py3-none-any.whl
+```
 
 ### Из исходников (в режиме разработки)
 

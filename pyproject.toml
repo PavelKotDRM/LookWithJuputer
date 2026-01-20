@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
 authors = [
-    {name = "Your Name", email = "your.email@example.com"}
+    {name = "PKALab", email = "kpalab@pkotlyarov.ru"}
 ]
 keywords = ["jupyter", "pandas", "polars", "dataframe", "widgets"]
 classifiers = [
